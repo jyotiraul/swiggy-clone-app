@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
+# Give full permissions to .bin folder (not recommended for production)
+RUN chmod -R 777 node_modules/.bin
+
 RUN chmod -R +x node_modules/.bin
 
 # Copy the rest of the application code
