@@ -44,8 +44,6 @@ phases:
   post_build:
     commands:
        - echo "Performing Trivy image scan after building the image..."
-       - aws ses send-email --from "rauljyoti94@gmail.com" --to "rauljyoti94@gmail.com" --subject "CodeBuild Status: $CODEBUILD_BUILD_ID" --text "Build status: $CODEBUILD_BUILD_STATUS" --region "ap-south-1" 
-  
       - trivy image  "$DOCKER_REGISTRY_USERNAME/swiggy:latest" >> trivyimage.txt
       - echo "Running OWASP Dependency-Check scan..."
       - cd dependency-check/bin
@@ -59,3 +57,11 @@ artifacts:
     - appspec.yaml
     - trivyfilescan.txt
     - trivyimage.txt
+
+  # discard-paths: yes  # Optional: removes the directory structure in the artifact
+  base-directory: ./build-output  # Optional: specify the directory to collect artifacts from
+  # You can also specify the destination S3 bucket here if you want to override default settings
+  s3:
+    bucket: codebuild-swiggy-bucket  # Your S3 bucket name
+    path: build-output/             # The path in the S3 bucket where artifacts will be stored
+    acl: private  
