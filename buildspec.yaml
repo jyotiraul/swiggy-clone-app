@@ -55,5 +55,5 @@ phases:
 artifacts:
   files:
     - appspec.yaml
-    - trivyfilescan.txt
-    - trivyimage.txt
+   # - trivyfilescan.txt
+   # - trivyimage.txt
