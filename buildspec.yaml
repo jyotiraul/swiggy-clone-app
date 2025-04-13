@@ -58,7 +58,7 @@ post_build:
         --to "madithati123@gmail.com" \
         --subject "CodeBuild Status: $CODEBUILD_BUILD_ID" \
         --text "Build status: $CODEBUILD_BUILD_STATUS" \
-        --region "us-east-1" # Update with your preferred AWS region
+        --region "ap-south-1"
 
 
 artifacts:
