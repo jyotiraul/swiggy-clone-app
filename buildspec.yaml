@@ -50,7 +50,7 @@ phases:
       - ./dependency-check.sh --scan . --format ALL
       - echo "Build completed successfully!"
       - echo "Running SonarQube analysis result"
-      - sonar-scanner -Dsonar.projectKey=swiggy -Dsonar.sources=. -Dsonar.host.url=http://65.0.101.224:9000/
+      - sonar-scanner -Dsonar.projectKey=swiggy -Dsonar.sources=. -Dsonar.host.url=http://13.232.83.23:9000/
       
 artifacts:
   files:
