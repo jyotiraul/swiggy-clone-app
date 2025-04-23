@@ -38,10 +38,12 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 
 ### 🔐 Step 2: AWS Systems Manager Parameter Store
 
-- Store the **SonarQube token** as a secure string parameter.
-- Ensure the parameter name matches what's defined in your `buildspec.yml`.
+1. Store the **SonarQube token** as a secure string parameter.
+  
+2. Ensure the parameter name matches what's defined in your `buildspec.yml`.
 ![image](https://github.com/user-attachments/assets/02d82833-5b6d-453f-b6f1-289486205740)
 ![image](https://github.com/user-attachments/assets/15d38f11-223c-4cba-8bf7-aa5ee2c6279e)
+
 
 ---
 
@@ -50,23 +52,23 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 1. Create a **CodeBuild Project**.
  ![image](https://github.com/user-attachments/assets/4d7f32d4-d748-4205-ac7a-439c2e753c47)
 
-3. Update the **CodeBuild IAM Role** with necessary permissions.
-![image](https://github.com/user-attachments/assets/3ee93eb6-4b5b-480d-bdd4-6fee34af579c)
 
+2. Update the **CodeBuild IAM Role** with necessary permissions.
+![image](https://github.com/user-attachments/assets/3ee93eb6-4b5b-480d-bdd4-6fee34af579c)
 ![image](https://github.com/user-attachments/assets/33f4f9ee-88da-4a47-9aae-fb26a0d4bd06)
 
 
-5. Start the build to trigger **SonarQube Analysis**.
+3. Start the build to trigger **SonarQube Analysis**.
 ![image](https://github.com/user-attachments/assets/cae0354f-fc2e-43a2-b690-fcf184b0ce19)
-
 ![image](https://github.com/user-attachments/assets/35df5934-003e-480b-a28d-ab4f1c5e5825)
 
-7. Use **Trivy** to scan and output reports like:
+
+4. Use **Trivy** to scan and output reports like:
    - `trivyfilescan.txt`
    - `trivyimage.txt`
 ![image](https://github.com/user-attachments/assets/fee75f1e-0cc8-4d13-afe7-560889b02aa6)
-
 ![image](https://github.com/user-attachments/assets/13ddcb0e-9dd7-44a4-9cac-52a8ad7c804f)
+
 
 ---
 
@@ -75,19 +77,21 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 1. Create an **ECS Cluster** (e.g., `swiggy_cluster`)
 ![image](https://github.com/user-attachments/assets/61a20d2b-03c1-4410-bc73-894db284321f)
 
-3. Create a **Task Definition** with container settings.
+
+2. Create a **Task Definition** with container settings.
 ![image](https://github.com/user-attachments/assets/4251e2ae-bc9f-4cbe-a52e-7191118ffb46)
 
-5. Setup **Application Load Balancer** (`Swiggy-alb`) and a **Target Group**.
-![image](https://github.com/user-attachments/assets/8959e0bd-2888-4843-b805-6b7cd43e2c89)
 
+3. Setup **Application Load Balancer** (`Swiggy-alb`) and a **Target Group**.
+![image](https://github.com/user-attachments/assets/8959e0bd-2888-4843-b805-6b7cd43e2c89)
 ![image](https://github.com/user-attachments/assets/039039eb-45ee-4d2e-b94c-81ea2bd2e3a0)
 
-7. Successful load balancer look like
+
+4. Successful load balancer look like
 ![image](https://github.com/user-attachments/assets/f82ab91e-f898-4550-bcb0-1458109b3929)
 
 
-9. Create an IAM role for **ECS CodeDeploy**.
+5. Create an IAM role for **ECS CodeDeploy**.
 ![image](https://github.com/user-attachments/assets/b776a341-2787-4545-a1cc-e545f9531ee5)
 
 
@@ -95,16 +99,15 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 
 ### 🔄 Step 5: ECS Service Creation
 
-- Under the ECS Cluster, create a new Service.
+1. Under the ECS Cluster, create a new Service.
 ![image](https://github.com/user-attachments/assets/30ad38f9-55a9-4f77-a447-ce6eda8cce93)
 
 
-- Associate the Target Group and Load Balancer.
-
+2. Associate the Target Group and Load Balancer.
 - ![image](https://github.com/user-attachments/assets/dd6f2025-4b3b-4892-86e0-c5845d9791c1)
 
-- After deployment, copy the Load Balancer DNS and open it in your browser.
 
+3 After deployment, copy the Load Balancer DNS and open it in your browser.
 ![image](https://github.com/user-attachments/assets/d0a844e7-f70a-4f46-8412-3cefbd615c7c)
 
 
@@ -118,33 +121,29 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 3. Verify successful pipeline creation.
 
 ![image](https://github.com/user-attachments/assets/94ea3912-e4e0-4b5e-85c6-f0816a1e8375)
-
 ![image](https://github.com/user-attachments/assets/90d72474-58c6-4010-b2b9-97855a1fe523)
-
 ![image](https://github.com/user-attachments/assets/a71b04d5-fd05-458b-833d-5f353a884415)
 
 ---
 
 ### 🔁 Step 7: Blue-Green Deployment
 
-- Edit `index.html` (e.g., update title from “Swiggy App” to “Swiggy Application”).
-
+1. Edit `index.html` (e.g., update title from “Swiggy App” to “Swiggy Application”).
   ![image](https://github.com/user-attachments/assets/44692692-56da-4943-aea8-a440907f6a01)
 
-- Commit and push changes to GitHub.
-- CodePipeline triggers deployment.
-- Observe traffic shifting between target groups (`Tg-swiggy-svc-2` ➝ `swiggy TG1`).
+2. Commit and push changes to GitHub.
+3. CodePipeline triggers deployment.
+3. Observe traffic shifting between target groups (`Tg-swiggy-svc-2` ➝ `swiggy TG1`).
 ![image](https://github.com/user-attachments/assets/e60c0c9c-86ee-4057-8921-956cfb53a88f)
-
 ![image](https://github.com/user-attachments/assets/682f7317-09bc-47e9-aeed-0f3e8d0f6fa0)
-
 ![image](https://github.com/user-attachments/assets/5efacb3c-720b-4a4d-8b7f-3d35974505b5)
+
 
 ---
 
 ### 🧹 Step 8: Clean-Up
 
-- Delete ECS cluster, EC2 instances, and CodePipeline setup to avoid charges.
+1. Delete ECS cluster, EC2 instances, and CodePipeline setup to avoid charges.
 
 ---
 
