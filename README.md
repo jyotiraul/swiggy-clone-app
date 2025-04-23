@@ -10,8 +10,10 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 ### ✅ Step 1: EC2 Setup & SonarQube
 
 1. **Create Key Pair** in AWS for SSH access.
-2. **Launch EC2 Instance** and open port `9000` in the security group (for SonarQube).
-3. SSH into EC2:
+ ![image](https://github.com/user-attachments/assets/20ec39da-40e4-4254-8dd5-82d08c84c30a)
+
+3. **Launch EC2 Instance** and open port `9000` in the security group (for SonarQube).
+4. SSH into EC2:
    ```bash
    sudo apt update
    sudo apt install docker.io -y
@@ -19,8 +21,8 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
    sudo systemctl restart docker
    docker run -d --name sonar -p 9000:9000 sonarqube:lts-community
    ```
-4. Access SonarQube at `http://<ec2-public-ip>:9000`
-5. Create a project manually -> generate a token and copy it.
+5. Access SonarQube at `http://<ec2-public-ip>:9000`
+6. Create a project manually -> generate a token and copy it.
 
 ---
 
