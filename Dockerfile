@@ -1,6 +1,8 @@
 # Use Node.js 16 slim as the base image
 FROM node:16
 
+RUN apt-get update && apt-get install -y xdg-utils
+
 # Set the working directory
 WORKDIR /app
 
@@ -12,6 +14,11 @@ RUN npm install
 
 # Copy the rest of the application code
 COPY . .
+
+# Give full permissions to .bin folder (not recommended for production)
+RUN chmod -R 777 node_modules/.bin/react-scripts
+
+RUN chmod -R +x node_modules/.bin/react-scripts
 
 # Build the React app
 RUN npm run build
