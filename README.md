@@ -161,6 +161,7 @@ This project demonstrates a secure, zero-downtime Blue-Green Deployment strategy
 
 **Jyoti Raul**  
 DevSecOps Enthusiast | Java Backend Developer | MSc IT  
-GitHub: [@jyoti-raul](https://github.com/DevOps-Institute-Mumbai)
+GitHub: [(https://github.com/jyotiraul
+)] 
 
 ---
